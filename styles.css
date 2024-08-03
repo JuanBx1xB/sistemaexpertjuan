@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #9cc4e4;
+}
+
+.card {
+    border: none;
+}
+
+#backgroundVideo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Asegura que el video esté detrás del contenido */
+}
+
+
+
+.card-body {
+    background-color: #f8f9fa;
+}
+
+#resultado p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 220px auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgb(3, 3, 3);
+}
+.form-label {
+    display: block;
+    margin-bottom: 30px; /* Espacio entre el texto de la etiqueta y el campo de entrada */
+}
+
+#sintomas {
+    display: block;
+    font-size: 0.80em;
+    margin-bottom: 25px; /* Ajusta el valor según el espacio que desees */
+    margin-left: 125px;
+    width: 40%; /* Asegura que el campo de entrada ocupe todo el ancho disponible */
+    padding: 17px; /* Añade espacio interno al campo de entrada */
+    border-radius: 20px;
+    margin-top: 10px; /* Ajusta el espacio adicional para bajar el campo de entrada */
+}
+.btn {
+    font-size: 1.2em; /* Tamaño de fuente del botón */
+    padding: 17px 50px; /* Espaciado interno del botón (alto, ancho) */
+    border-radius: 20px; /* Bordes redondeados del botón */
+    width: 47%;
+    margin-left: 125px;
+    margin-top: 5px; /* Espacio arriba del botón */
+}
+
+.btn-primary:hover {
+    background-color: #ffd500d5; /* Color de fondo en el estado hover del botón */
+}
+

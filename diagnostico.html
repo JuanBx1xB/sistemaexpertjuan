@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Experto de Diagnóstico de Computadora</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Vincula tu archivo CSS -->
+</head>
+<body>
+    <video autoplay muted loop id="backgroundVideo">
+        <source src="aish.mp4" type="video/mp4">
+        Tu navegador no soporta el formato de video.
+    </video>
+    <div class="container">
+        <h1 class="text-center">Sistema Experto de Diagnóstico de Computadora</h1>
+        <div id="app">
+            <form id="diagnosticoForm">
+                <div class="mb-3">
+                    <label for="sintomas" class="form-label">Ingresa los síntomas de tu computador separados por comas:</label>
+                    <input type="text" id="sintomas" class="form-control" placeholder="pantalla_negra, no_arranca, ...">
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Diagnosticar</button>
+                </div>
+            </form>
+            <div id="resultado" class="mt-4"></div>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('diagnosticoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const sintomasInput = document.getElementById('sintomas').value;
+            const sintomas = sintomasInput.split(',').map(s => s.trim());
+            const reglas = [
+                { sintoma: "pantalla_negra", problema: "falla_de_pantalla", solucion: "Prueba a reiniciar el computador. Si el problema persiste, verifica los cables de conexión de la pantalla o consulta a un técnico." },
+                { sintoma: "no_arranca", problema: "falla_de_alimentacion", solucion: "Asegúrate de que el cable de alimentación esté correctamente conectado y verifica la fuente de alimentación del computador." },
+                { sintoma: "lentitud", problema: "sobrecarga_de_memoria", solucion: "Cierra aplicaciones no esenciales y revisa si el computador tiene suficiente memoria disponible. Considera aumentar la RAM si es necesario." },
+                { sintoma: "sonidos_extraños", problema: "falla_de_hardware", solucion: "Verifica los componentes internos del computador, como el disco duro y la tarjeta gráfica. Asegúrate de que todo esté correctamente conectado." },
+                { sintoma: "error_de_sistema", problema: "falla_de_software", solucion: "Intenta reiniciar el sistema en modo seguro y realiza una comprobación de errores. Si el problema persiste, considera reinstalar el sistema operativo." }
+            ];
+
+            let problemaIdentificado = "Lo siento, vuelve a ingresar el problema ";
+            let solucion = "No se pudo identificar una solución para el problema.";
+
+            for (const regla of reglas) {
+                if (sintomas.includes(regla.sintoma)) {
+                    problemaIdentificado = regla.problema;
+                    solucion = regla.solucion;
+                    break;
+                }
+            }
+
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `<p><strong>Problema identificado:</strong> ${problemaIdentificado}</p><p><strong>Solución sugerida:</strong> ${solucion}</p>`;
+        });
+    </script>
+</body>
+</html>
